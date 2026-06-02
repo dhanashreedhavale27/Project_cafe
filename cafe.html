@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Depresso No More | Premium Café & Bakery</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS Reset & Variables --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-font: 'Playfair Display', serif;
+            --body-font: 'Poppins', sans-serif;
+            --primary-color: #3d2314;     /* Deep Espresso */
+            --secondary-color: #cd9366;   /* Warm Latte Gold */
+            --bg-light: #fdfaf6;          /* Cream Soft White */
+            --text-dark: #2a1a10;
+            --text-light: #ffffff;
+            --card-shadow: 0 10px 30px rgba(61, 35, 20, 0.08);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            font-family: var(--body-font);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Custom Keyframe Animations --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes pulseBtn {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(205, 147, 102, 0.5); }
+            70% { transform: scale(1.03); box-shadow: 0 0 0 15px rgba(205, 147, 102, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(205, 147, 102, 0); }
+        }
+
+        /* --- Header & Navigation Menu --- */
+        header {
+            background-color: rgba(61, 35, 20, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+        }
+
+        .logo {
+            color: var(--secondary-color);
+            font-family: var(--primary-font);
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* --- Main Layout Offset --- */
+        main {
+            margin-top: 75px;
+        }
+
+        /* --- Hero Section --- */
+        #hero {
+            background: linear-gradient(rgba(42, 26, 16, 0.65), rgba(42, 26, 16, 0.65)), 
+                        url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=1600') no-repeat center center/cover;
+            height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+            padding: 0 1rem;
+        }
+
+        #hero h1 {
+            font-family: var(--primary-font);
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+            max-width: 650px;
+            letter-spacing: 0.5px;
+            opacity: 0.9;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .btn {
+            background-color: var(--secondary-color);
+            color: var(--text-light);
+            padding: 0.9rem 2.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            border-radius: 50px;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            animation: fadeInUp 1.4s ease-out, pulseBtn 3s infinite 2s;
+            transition: var(--transition);
+        }
+
+        /* --- General Section Styling --- */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            text-align: center;
+            font-family: var(--primary-font);
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 3.5rem;
+        }
+
+        section h2::after {
+            content: '✿';
+            display: block;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            margin-top: 0.5rem;
+        }
+
+        /* --- Content Section 1: Animated Carousel --- */
+        .carousel-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+            padding: 1.5rem 0;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 2rem;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            width: 100%;
+        }
+
+        article.menu-card {
+            min-width: calc(33.333% - 1.34rem);
+            background-color: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(205, 147, 102, 0.1);
+        }
+
+        article.menu-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(61, 35, 20, 0.15);
+        }
+
+        .card-img-wrapper {
+            overflow: hidden;
+            height: 250px;
+            position: relative;
+        }
+
+        .menu-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        article.menu-card:hover .menu-img {
+            transform: scale(1.1);
+        }
+
+        .menu-info {
+            padding: 1.8rem;
+        }
+
+        .menu-info h3 {
+            font-family: var(--primary-font);
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 0.6rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            color: var(--secondary-color);
+            font-family: var(--body-font);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .menu-info p {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 300;
+        }
+
+        /* Carousel Navigation Controls */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: var(--transition);
+        }
+
+        .carousel-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .prev-btn { left: 10px; }
+        .next-btn { right: 10px; }
+
+        /* --- Content Section 2: About Us --- */
+        #about {
+            background-color: #f7f3ec;
+            max-width: 100%;
+        }
+
+        .about-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 320px;
+        }
+
+        .about-text h2 {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .about-text h2::after {
+            margin: 0.5rem 0 0 0;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: #4a4a4a;
+        }
+
+        .about-img-wrapper {
+            flex: 1;
+            min-width: 320px;
+            position: relative;
+        }
+
+        .about-img {
+            width: 100%;
+            border-radius: 30px 0 30px 0;
+            max-height: 450px;
+            object-fit: cover;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .about-img-wrapper:hover .about-img {
+            border-radius: 0 30px 0 30px;
+        }
+
+        /* --- Content Section 3: Contact & Interaction --- */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-info, .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-info h3, .contact-form h3 {
+            font-family: var(--primary-font);
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-details p {
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+            font-weight: 300;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .contact-form input, .contact-form textarea {
+            font-family: var(--body-font);
+            padding: 1rem 1.2rem;
+            border: 1px solid rgba(61, 35, 20, 0.15);
+            background-color: #fff;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            width: 100%;
+            transition: var(--transition);
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 10px rgba(205, 147, 102, 0.2);
+        }
+
+        .contact-form .btn {
+            align-self: flex-start;
+            margin-top: 0.5rem;
+            animation: none;
+        }
+
+        .contact-form .btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        footer p {
+            font-size: 0.95rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            opacity: 0.8;
+        }
+
+        footer .brand {
+            font-family: var(--primary-font);
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* --- Responsive Viewports Breakdowns --- */
+        @media (max-width: 992px) {
+            article.menu-card {
+                min-width: calc(50% - 1rem);
+            }
+        }
+
+        @media (max-width: 768px) {
+            #hero h1 { font-size: 2.8rem; }
+            section h2 { font-size: 2.4rem; }
+            .nav-links { display: none; }
+            article.menu-card {
+                min-width: 100%;
+            }
+            .about-text h2 { text-align: center; }
+            .about-text h2::after { margin: 0.5rem auto 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#" class="logo">☕ Depresso No More</a>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#about">Our Story</a></li>
+                <li><a href="#contact">Find Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <section id="hero">
+            <h1>Depresso No More</h1>
+            <p>For your daily dose of happiness. Step away from the grind and experience artisanal pour-overs combined with cloud-like textures of house-baked delicacies.</p>
+            <a href="#menu" class="btn">View Our Menu</a>
+        </section>
+
+        <section id="menu">
+            <h2>Sip & Savor</h2>
+            
+            <div style="position: relative;">
+                <button class="carousel-btn prev-btn" id="prevSlide">&#10094;</button>
+                <button class="carousel-btn next-btn" id="nextSlide">&#10095;</button>
+
+                <div class="carousel-container">
+                    <div class="carousel-track" id="carouselTrack">
+                        
+                        <article class="menu-card">
+                            <div class="card-img-wrapper">
+                                <img class="menu-img" src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=600" alt="Black Coffee">
+                            </div>
+                            <div class="menu-info">
+                                <h3><span>Black Coffee</span> <span class="price">129/-</span></h3>
+                                <p>Our pristine, slow-steeped house blend. Clean, robust, and full-bodied for true coffee purists.</p>
+                            </div>
+                        </article>
+
+                        <article class="menu-card">
+                            <div class="card-img-wrapper">
+                                <img class="menu-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG7rBJNyWaO63nBUMw5PBoqM40FzVwYmWFyQ&s" alt="Espresso shot">
+                            </div>
+                            <div class="menu-info">
+                                <h3><span>Espresso</span> <span class="price">129/-</span></h3>
+                                <p>A concentrated, intense shot pulled under precise pressure. Features an exquisite, thick golden crema.</p>
+                            </div>
+                        </article>
+                        
+                        <article class="menu-card">
+                            <div class="card-img-wrapper">
+                                <img class="menu-img" src="data:image/jpeg;base64,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" alt="Americano Coffee">
+                            </div>
+                            <div class="menu-info">
+                                <h3><span>Americano</span> <span class="price">129/-</span></h3>
+                                <p>Rich shots of espresso gently diluted with filtered hot water to preserve the intricate tasting notes.</p>
+                            </div>
+                        </article>
+
+                        <article class="menu-card">
+                            <div class="card-img-wrapper">
+                                <img class="menu-img" src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=600" alt="Latte Art">
+                            </div>
+                            <div class="menu-info">
+                                <h3><span>Latte</span> <span class="price">129/-</span></h3>
+                                <p>Smooth espresso layered under a heavy blanket of velvety, perfectly aerated steamed micro-foam.</p>
+                            </div>
+                        </article>
+
+                        <article class="menu-card">
+                            <div class="card-img-wrapper">
+                                <img class="menu-img" src="https://www.healthybyfork.com/wp-content/uploads/2025/11/avocado-toast-feta-cherry-tomatoes-cranberries-walnuts.webp" alt="Avacado toast">
+                             </div>
+                             <div class="menu-info">
+                                <h3><span>Avocado Toast</span> <span class="price">199/-</span></h3>
+                                <p>Thick-cut artisanal sourdough layered with creamy avocado mousse, heirloom radishes, and pink salt.</p>
+                            </div>
+                        </article>
+
+                        <article class="menu-card">
+                            <div class="card-img-wrapper">
+                                <img class="menu-img" src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=600" alt="Almond Croissant">
+                            </div>
+                            <div class="menu-info">
+                                <h3><span>Almond Croissant</span> <span class="price">299/-</span></h3>
+                                <p>Twice-baked flaky pastry filled with sweet frangipane paste and heavily blanketed in toasted almonds.</p>
+                            </div>
+                        </article>
+
+                        <article class="menu-card">
+                            <div class="card-img-wrapper">
+                                <img class="menu-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToyHbQK6rJqXqUCeP_mXRc7xcs1tXcUnIrLw&s" alt="Chocolate Chip Cookies">
+                            </div>
+                            <div class="menu-info">
+                                <h3><span>Choco-Chip Cookie</span> <span class="price">99/-</span></h3>
+                                <p>Warm, gooey, giant cookie packed with dark chocolate chunks and a delicate touch of sea salt.</p>
+                            </div>
+                        </article>
+
+                        <article class="menu-card">
+                            <div class="card-img-wrapper">
+                                <img class="menu-img" src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&q=80&w=600" alt="Cold Brew">
+                            </div>
+                            <div class="menu-info">
+                                <h3><span>Matcha Cold Foam</span> <span class="price">159/-</span></h3>
+                                <p>Our 18-hour cold brew topped off elegantly with an earthy, velvety bright green matcha cream foam.</p>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="about-container">
+                <div class="about-text">
+                    <h2>Our Story</h2>
+                    <p>We believe coffee is more than a caffeine routine—it’s an art form. Founded on premium, ethically sourced beans, we treat roasting as a delicate process designed to highlight natural profiles.</p>
+                    <p>Our quiet spaces are optimized for focused mornings, peaceful laptop sessions, and warm conversations with friends. Here, every dynamic detail is engineered to make you feel right at home.</p>
+                </div>
+                <div class="about-img-wrapper">
+                    <img class="about-img" src="https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&q=80&w=600" alt="Cozy cafe lighting setup">
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Say Hello</h2>
+            <div class="contact-container">
+                
+                <div class="contact-info">
+                    <h3>Visit Our Space</h3>
+                    <div class="contact-details">
+                        <p>✨ <strong>Vibe:</strong> Relaxed, aesthetic, fun playing all day.</p>
+                        <p>📍 <strong>Location:</strong> 14/1, Church Street, 560025</p>
+                        <p>⏰ <strong>Hours:</strong> Open Everyday • 10:00 AM - 9:00 PM</p>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3>Pre-Order or Drop Feedback</h3>
+                    <form onsubmit="handleFormSubmit(event)">
+                        <input type="text" id="formName" placeholder="Your Name" required>
+                        <input type="email" id="formEmail" placeholder="Your Email Address" required>
+                        <textarea id="formMsg" rows="4" placeholder="What are you craving today?" required></textarea>
+                        <button type="submit" class="btn">Submit Entry</button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="brand">Depresso No More</div>
+        <p>&copy; 2026. All Rights Reserved. </p>
+    </footer>
+
+    <script>
+        // --- Carousel Logic ---
+        const track = document.getElementById('carouselTrack');
+        const nextBtn = document.getElementById('nextSlide');
+        const prevBtn = document.getElementById('prevSlide');
+        
+        let index = 0;
+
+        function getVisibleCards() {
+            if (window.innerWidth <= 768) return 1;
+            if (window.innerWidth <= 992) return 2;
+            return 3;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            const totalCards = document.querySelectorAll('.menu-card').length;
+            const visibleCards = getVisibleCards();
+            const maxIndex = totalCards - visibleCards;
+
+            if (index < maxIndex) {
+                index++;
+            } else {
+                index = 0; // Loop back to the start smoothly
+            }
+            updateCarouselPosition();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (index > 0) {
+                index--;
+            } else {
+                const totalCards = document.querySelectorAll('.menu-card').length;
+                const visibleCards = getVisibleCards();
+                index = totalCards - visibleCards; // Loop back to the end
+            }
+            updateCarouselPosition();
+        });
+
+        function updateCarouselPosition() {
+            const cardWidth = document.querySelector('.menu-card').getBoundingClientRect().width;
+            const gap = 32; // matching the 2rem CSS gap (16px * 2)
+            track.style.transform = `translateX(-${index * (cardWidth + gap)}px)`;
+        }
+
+        window.addEventListener('resize', () => {
+            index = 0; 
+            track.style.transform = `translateX(0px)`;
+        });
+
+        // --- Form Interaction Animation Feedback ---
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('formName').value;
+            
+            alert(`Cheers, ${name}! Your request has been received. Your Order is getting ready! ✨`);
+            
+            document.getElementById('formName').value = '';
+            document.getElementById('formEmail').value = '';
+            document.getElementById('formMsg').value = '';
+        }
+    </script>
+</body>
+</html>
